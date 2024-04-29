@@ -10,7 +10,7 @@ function App() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    const url = "http://express250525323.azurewebsites.net/resultados"
+    const url = "https://express250525323.azurewebsites.net/resultados"
 
     fetch(url, { method: 'GET' })
       .then(response => response.json())
