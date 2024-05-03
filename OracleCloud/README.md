@@ -1,8 +1,7 @@
-# React + Vite
+# Página web React para Oracle Cloud
+Este directorio es el directorio raíz del proyecto React + Vite utilizado para la parte de Oracle Cloud de la PL2 de la asignatura de PAP.  
+**React** como framework de JavaScript y **Vite** como servidor de desarrollo local y herramienta de compilación.
+## Instrucciones de ejecución y compilación
+Ejecutar el comando `npm run dev` para abrir un servidor de desarrollo local en el que visualizar la página web en *localhost:5173*.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ejecutar el comando `npm run build` para compilar el proyecto React y convertirlo en archivos html, css y js que se puedan alojar en un servidor web cualquiera. El resultado de la compilación se genera en el directorio *dist*.
