@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css'
-import DataTable from 'react-data-table-component';
-import Loading from './Loading';
+import { PiRankingDuotone } from "react-icons/pi";
+import { ImStatsDots } from "react-icons/im";
+import Ranking from './componentes/Ranking';
+import Stats from './componentes/Stats';
 
 function App() {
 
   const [cargando, setCargando] = useState(true)
+  const [viendoRanking, setViendoRanking] = useState(true)
 
   const [data, setData] = useState([])
 
@@ -23,62 +26,43 @@ function App() {
           id++
         })
         // ordenar por puntuación
-        results.sort((a, b) => b.puntuacion - a.puntuacion); 
+        results.sort((a, b) => b.puntuacion - a.puntuacion);
 
         setData(results)
+        setCargando(false)
+      })
+      .catch(error => {
+        setData([])
         setCargando(false)
       })
 
   }, [])
 
-  const columns = [
-    {
-      name: 'Nombre',
-      selector: row => row.nombre,
-      sortable: true,
-    },
-    {
-      name: 'Puntuación',
-      selector: row => row.puntuacion,
-      sortable: true,
-    },
-    {
-      name: 'Tablero',
-      selector: row => row.tablero,
-      sortable: true,
-    },
-    {
-      name: 'Duración',
-      selector: row => row.duracion,
-      sortable: true,
-    },
-    {
-      name: 'Fecha',
-      selector: row => row.fecha.substring(0, 10),
-      sortable: true,
-    },
-  ];
+  const verRanking = (e) => {
+    setViendoRanking(true)
+    document.getElementById('boton-ranking').classList.add('seleccionado')
+    document.getElementById('boton-stats').classList.remove('seleccionado')
+  }
 
-  const paginationComponentOptions = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    noRowsPerPage: true,
-  };
+  const verStats = (e) => {
+    setViendoRanking(false)
+    document.getElementById('boton-ranking').classList.remove('seleccionado')
+    document.getElementById('boton-stats').classList.add('seleccionado')
+  }
 
   return (
     <>
       <div className='app'>
-        <h1>Tabla de clasificación</h1>
-        <DataTable
-          columns={columns}
-          data={data}
-          progressPending={cargando}
-          progressComponent={<Loading />}
-          pagination
-          paginationComponentOptions={paginationComponentOptions}
-          paginationPerPage={8}
-          noDataComponent="No hay ningún registro, ¡sé el primero en añadir uno!"
-        />
+        <div className='menu'>
+          <button id='boton-ranking' className='boton seleccionado' onClick={verRanking}><PiRankingDuotone size={32} /></button>
+          <button id='boton-stats' className='boton' onClick={verStats}><ImStatsDots size={24} /></button>
+        </div>
+        {
+          viendoRanking ?
+            <Ranking data={data} cargando={cargando} />
+            :
+            <Stats data={data} cargando={cargando}/>
+        }
       </div>
     </>
   )
