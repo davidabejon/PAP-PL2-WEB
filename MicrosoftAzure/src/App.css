@@ -1,8 +1,15 @@
 h1 {
-  color: white;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, .5); 
 }
 
 .app {
+
+  position: relative;
+
   width: 80vw;
   min-height: 80vh;
   display: flex;
@@ -13,12 +20,69 @@ h1 {
 
   border-radius: .5rem;
   padding: 2rem;
-  background-color: #4158D0;
-  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background-color: rgba(255, 255, 255, .5);
+  padding: .5rem 1rem;
+
+  border: 3px solid rgba(255, 255, 255, .8);
+  backdrop-filter: blur(2px);
+
   box-shadow: 0px 0px 80px -20px rgba(0,0,0,0.75);
 
 }
 
+@media (max-width: 678px) {
+  .app {
+    align-items: start;
+  }
+}
+
+/* CSS para la paginación de la tabla */
 .rdt_Pagination {
   border-radius: .0 0 .5rem .5rem;
+}
+
+.menu {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+
+  display: flex;
+  gap: 1rem;
+}
+.boton {
+  border: none;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  background-color: rgba(0, 0, 0, .8);
+  color: rgba(255, 255, 255, .8);
+  border-radius: .5rem;
+
+  transition: .4s all;
+}
+.boton:hover, .seleccionado {
+  background-color: #4158D0;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* CSS para Stats.jsx */
+.stats-1 {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+p {
+  color: black;
+  background-color: rgba(255, 255, 255, .3);
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  border: 1px solid rgba(255, 255, 255, .6);
+}
+
+.dato {
+  color: rgba(0, 0, 0, .8);
+  font-weight: bold;
+  font-size: 22px;
 }
