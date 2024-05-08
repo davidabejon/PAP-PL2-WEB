@@ -31,6 +31,10 @@ function App() {
         setData(results)
         setCargando(false)
       })
+      .catch(error => {
+        setData([])
+        setCargando(false)
+      })
 
   }, [])
 
@@ -57,7 +61,7 @@ function App() {
           viendoRanking ?
             <Ranking data={data} cargando={cargando} />
             :
-            <Stats data={data} />
+            <Stats data={data} cargando={cargando}/>
         }
       </div>
     </>
